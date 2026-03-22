@@ -1,28 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap');
 
-@import "tailwindcss";
-
-@theme {
-  --color-primary-rose: #ce6b7f;
-  --color-soft-blush: #fae5e5;
-  --color-deep-maroon: #3d2327;
-  --color-clean-white: #ffffff;
-  --color-warm-sand: #fbf2eb;
-
-  --font-sans: "Plus Jakarta Sans", Nunito, sans-serif;
-  --font-display: Quicksand, sans-serif;
-
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
-  --radius-full: 9999px;
-
-  --shadow-rose: 0 8px 24px rgba(206, 107, 127, 0.3);
-  --shadow-soft: 0 12px 40px rgba(61, 35, 39, 0.05);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 24 37% 97%;
+    --foreground: 344 27% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 344 27% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 344 27% 18%;
+    --primary: 348 47% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 348 100% 95%;
+    --secondary-foreground: 344 27% 18%;
+    --muted: 23 34% 92%;
+    --muted-foreground: 344 12% 42%;
+    --accent: 18 33% 90%;
+    --accent-foreground: 344 27% 18%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 18 20% 86%;
+    --input: 18 20% 86%;
+    --ring: 348 47% 62%;
+    --radius: 14px;
+  }
+
+  * {
+    @apply border-border;
+  }
+
   body {
-    @apply bg-warm-sand text-deep-maroon font-sans antialiased overflow-x-hidden;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 }
 

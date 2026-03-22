@@ -1,0 +1,8 @@
+[
+  {"id": "lamp-001", "name": "Arched floor lamp", "category": "Lighting", "price": 95},
+  {"id": "rug-001", "name": "Neutral area rug", "category": "Textiles", "price": 160},
+  {"id": "table-001", "name": "Oak side table", "category": "Furniture", "price": 120},
+  {"id": "curtain-001", "name": "Linen curtains", "category": "Decor", "price": 80},
+  {"id": "chair-001", "name": "Accent chair", "category": "Furniture", "price": 180},
+  {"id": "shelf-001", "name": "Wall shelf set", "category": "Storage", "price": 110}
+]
