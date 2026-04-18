@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: archi-roomai
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false        # You'll paste this manually in Render dashboard (keeps it secret)
+      - key: PYTHON_VERSION
+        value: 3.11.0
