@@ -1,0 +1,190 @@
+
+Jawaharlal Nehru Technological University Hyderabad
+
+
+SRS DOCUMENT
+
+
+
+Introduction
+Purpose
+This document defines the comprehensive requirements fo thr Archi RoomAI .The purpose of this document is to establish a definitive technical and functional baseline for Archi RoomAI. This document outlines the architectural requirements , specific functional behaviors and UI/UX standards for the web-based AI interior design platform .
+Scope 
+Archi RoomAI is a specialized Generative AI tool for interior design .It brideges the gap between raw space and finished vision by allowing users to :
+Upload real-world room photo and dimensions
+Apply curated design aesthetics (eg . “Organic Velvet” , “Sage and Stone”).
+View high- fidelity AI –generated transformations
+Receive localized Indian market (INR) budget estimations and furniture recommendations.
+Definitions and Acronyms
+SRS : Software Requirements Specification
+YOLOv8: You Only Look Once v8 (Real-time object detection model).
+Semantic Segmentation: The process of partitioning a digital image into multiple segments to simplify furniture identification.
+Geometric Calibration: Mapping 2D image coordinates to a digital canvas using user-provided physical dimensions.
+Collision Detection: Algorithmic check to ensure new furniture assets do not overlap with existing structures or boundaries
+GUI : Graphical User Interface
+RDBMS : Relational Database Management System
+API : Application Programming Interface
+
+
+Overall Description
+Product Perspective 
+The system is bridging the gap between raw room imagery and final execution. It is a web- platform that replaces the need for manual spatial reasoning with AI –driven estimation and asset integration .
+
+Product Functions:
+Image Pre-processing: Validation and normalization of uploaded room photos.
+Aesthetic Mapping: Translation of user-selected styles (e.g., "Aethelred Slate & Terracotta") into AI `prompts/embeddings.
+Spatial Generation: Generating 3D-aware interior designs that respect the original room's boundaries.
+Localized Costing: Calculating expenditures based on Indian market averages for materials and furniture.
+Session Management: Temporary storage of designs for active user comparison.
+Functional Capabilities
+Spatial Digitization: Converts 2D RGB imagery into a 3D coordinate system.
+Automated Detection: Identifies existing furniture using YOLOv8.
+Layout Interaction: Provides a dynamic editor with collision detection to prevent spatial congestion.
+Financial Procurement: Syncs design choices with market pricing and budget guardrails
+
+Functional Requirements
+Data Acquisition & Computer Vision
+Multi-Source Input: The system shall accept orthographic/perspective photos or house map plans with dimensions.
+Object Recognition: The system shall use YOLOv8 for semantic segmentation of assets like beds, sofas, and dining sets.
+Spatial Mapping: The system shall calculate relational proximity between objects and wall boundaries
+3.2 Virtual Rearrangement & UI
+Non-Destructive Editing: Users shall be able to digitally reconfigure layouts without physical labor.
+Collision Detection: The system shall prevent overlapping assets to ensure ergonomic flow.
+Asset Test-Fitting: Users shall be able to input specific furniture models into the digital room.
+3.3 User Onboarding and Authentication
+Guest Access: The system shall allow users to browse the landing page and view "Public Gallery" examples without creating an account.
+User Registration: The system shall provide a sign-up interface using Email/Password or OAuth (Google/Apple).
+Profile Management: Users shall be able to save their "Project History," allowing them to revisit previous AI generations and budget breakdowns.
+3.4 Image Acquisition and Validation
+Upload Interface: The system shall provide a drag-and-drop zone and a native file explorer trigger for image selection.
+Format Support: The system shall validate that the uploaded file is in .jpg, .png, or .webp format.
+Size Constraints: The system shall reject any file exceeding 10MB and provide an immediate "File Too Large" error message.
+Quality Check: The backend shall perform a basic resolution check; images below 720p shall trigger a "Low Quality Warning" to the user, advising that results may be blurry.
+3.5 Spatial Data Entry
+Dimension Input: The system shall provide numeric input fields for Length, Width, and Height.
+Unit Selection: A toggle switch shall allow users to switch between Feet (default for Indian market), Meters, and Inches.
+Automatic Area Calculation: The system shall automatically calculate the total Square Footage (sq. ft.) or Square Meters (sq. m.) based on inputs to inform the budget engine.
+3.6 Style Selection and AI Prompting
+Aesthetic Gallery: The system shall display at least three visual cards representing design themes (e.g., "Aethelred Slate & Terracotta").
+Theme DNA Mapping: Upon selection, the system shall map the theme to a specific "Negative Prompt" (to avoid artifacts) and a "Positive Prompt" (to guide the AI toward specific textures and lighting).
+Color Palette Preview: Each style card shall display a 5-color HSL-tailored palette that will be dominant in the generated result.
+3.7 Indian Market Budgeting & Recommendations
+Cost Calculation: The system shall generate a budget breakdown based on the calculated area and selected tier (Economy, Standard, Premium).
+Currency Formatting: All costs must be displayed in INR (₹) using the Indian numbering system (e.g., ₹1,50,000).
+Furniture Categorization: The system shall provide a list of recommended furniture types (e.g., "3-Seater Mid-century Sofa," "Recessed LED Warm Lights") that match the visual output.
+
+
+
+
+
+
+
+
+
+
+
+
+External Interface Requirements
+User Interaction & Input
+Image Constraints: System must reject images with extreme motion blur or low light (below 300lux equivalent) to ensure AI quality.
+Multi-Unit Dimensioning: Support for Feet, Meters, and Inches with real-time conversion.
+Aesthetic Profiles: Each style must have a "Prompt DNA" including HSL-tailored color codes.
+The Cost Estimation Engine
+The system shall utilize a dynamic lookup table specifically for the Indian Market (INR):
+Tier 1 (Luxury): ₹5,000–₹8,000 per sq. ft.
+Tier 2 (Mid-Range): ₹2,500–₹4,500 per sq. ft.
+Tier 3 (Budget): ₹1,200–₹2,000 per sq. ft.
+Comparison View Logic
+The frontend must implement a Synchronized Canvas.
+Zooming into the "After" image must trigger a mirrored zoom on the "Before" image to allow users to inspect material changes in specific corners.
+4.4 Software Interfaces
+YOLOv8 Framework: For high-speed image processing.
+Generative API (Google Gemini/Imagen): For rendering architectural interior generation via image-to-image synthesis.
+Payment API: (Optional future scope) for direct checkout of suggested items.
+
+API Endpoints and Data Models
+API Endpoints (FastAPI): 
+The backend architecture leverages FastAPI to handle high-concurrency requests for image processing and spatial analysis. The following endpoints define the communication protocol between the client-side UI and the AI processing pipeline.
+POST /api/v1/upload
+Description: Initializes the session by capturing RGB image data and physical dimensional constraints.
+Payload: multipart/form-data (image file, length, width, height, unit).
+Returns: session_id (UUID), upload_status.
+POST /api/v1/generate
+Description: Triggers the computer vision pipeline, including YOLOv8 object detection and spatial mapping.
+Payload: application/json (Design Preferences - style, budget_limit in INR, session_id).
+Returns: task_id (UUID) for tracking the background generation task.
+GET /api/v1/status/{task_id}
+Description: Monitors the status of the non-destructive digital reconfiguration and layout testing.
+Returns: Task status (PENDING, PROCESSING, COMPLETED, FAILED) and final_image_url if complete.
+GET /api/v1/recommendations/{task_id}
+Description: Retrieves the finalized furniture suggestions and the automated budget breakdown.
+Returns: Array of AI-suggested furniture items and the total dynamic budget breakdown.
+
+
+Data Models
+The system utilizes strict data validation to ensure "Geometric Calibration" and "Financial Analytics" remain accurate across all platforms
+RoomInput Model
+image_url: str (Path to the uploaded orthographic or perspective imagery).
+dimensions: dict (length, width, height) used to map the spatial coordinate system.
+existing_assets: List[DetectedObject] (Populated after YOLOv8 feature extraction).
+FurnitureAsset Model
+label: str (Type of furniture, e.g., Bed, Sofa).
+dimensions: dict (Physical size for collision detection).
+market_price: float (Current pricing for automated cost estimation).
+purchase_link: str (Direct link to online procurement).
+BudgetAnalysis Model
+total_estimated_cost: float (Sum of all assets in the virtual layout).
+tier: enum (Low, Mid, High based on user budget range filters).
+execution_split: dict (DIY vs. Professional cost breakdown).
+budget_transparency_score: float (Metric to mitigate financial risk/capital over-expenditure)
+Other Non-Functional Requirements 
+Performance
+Inference Speed : Object detection must complete within 3 seconds of image upload 
+Layout Rendering : Virtual rearrangement must happen at 60 FPS for smooth user experience .
+Worker Management: Backend must support horizontal scaling. If more than 50 tasks are in the queue, the system must auto-provision a new GPU node.
+Latency: Non-AI requests (static assets) must be served within 200ms via CDN.
+
+Security & Data Privacy
+Stateless Processing: Images are stored in a /temp directory with a 60-minute TTL (Time To Live). They are not used for model retraining without explicit consent.
+CORS & Auth: Strict domain whitelisting and rate limiting (max 10 generations per user/day) to prevent API abuse.
+Image Privacy: Uploaded room photos must be encrypted and accessible only to the uploader.
+Data Integrity: Pricing data must be updated daily via market APIs to ensure budget accuracy.
+Reliability 
+System Uptime: 99.5% availability for the web interface.
+Fallback: If depth estimation fails, the system shall prompt the user to manually mark room corners.
+User Experience & Design Language
+The “WOW” factor Requirements 
+Glassmorphism: Sidebars must have a 60% opacity with a 15px backdrop blur.
+Typography: Use of high-contrast, elegant sans-serif fonts (e.g., Inter or Montserrat).
+Transitions: All state changes must use a 300ms cubic-bezier transition.
+
+
+Data Requirements 
+Logical Data Model
+RoomData: ImagePath, Dimensions[x,y,z], CoordinateMap, ThemePreference.
+AssetLibrary: ModelID, Name, Category, Dimensions, BasePrice, ProviderURL.
+UserSession: UserID, SavedLayouts[], CurrentBudget.
+Analysis Model and Workflow
+Process Flow 
+Data Acquisition: User uploads photo + dimensions.
+Computer Vision Pipeline: Feature extraction -> YOLOv8 Detection -> Spatial Estimation.
+Virtual Interaction: Asset Integration -> Collision Detection -> User Theme Customization.
+Output Generation: Layout suggestions + Real-time Budget Report.
+
+
+
+
+
+Error Handling and Edge Cases 
+Appendix
+Future Enhancements
+AR View: Real-time visualization using smartphone cameras (Augmented Reality).
+Multi-Room Support: Mapping an entire house floor plan simultaneously.
+
+
+
+Work Flow
+
+
+
+ 

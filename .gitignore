@@ -1,0 +1,45 @@
+# ── Python ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual Environment ──────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Environment / Secrets ────────────────────────────
+.env
+*.env
+!.env.example
+
+# ── Uploaded & Generated Images (runtime data) ───────
+backend/static/uploads/
+backend/static/results/dynamic_*
+
+# ── IDE & OS Files ───────────────────────────────────
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Temp / Agents ────────────────────────────────────
+backend/.tmp/
+.agents/
+
+# ── Misc ─────────────────────────────────────────────
+*.log
+*.bak
+srs_output.txt
+srs_text.txt
+update_srs.py
+walkthrough.md.resolved
