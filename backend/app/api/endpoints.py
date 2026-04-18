@@ -13,6 +13,7 @@ except ImportError:
     pass  # dotenv is optional; env vars can be set manually
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+BASE_URL = os.getenv("APP_BASE_URL", "http://127.0.0.1:8001").rstrip("/")
 from app.models.schemas import (
     UploadResponse, 
     GenerateRequest, 
@@ -46,7 +47,7 @@ async def upload_image(file: UploadFile = File(...)):
     with open(filepath, "wb") as buffer:
         buffer.write(content)
     
-    file_url = f"http://127.0.0.1:8001/static/uploads/{filename}"
+    file_url = f"{BASE_URL}/static/uploads/{filename}"
     return UploadResponse(success=True, image_url=file_url)
 
 
@@ -273,8 +274,8 @@ async def simulate_generation(job_id: str, image_url: str, prefs: dict = None):
                 
                 print("Nano Banana Generation Successful!")
                 result_urls = [
-                    f"http://127.0.0.1:8001/static/results/{opt1_filename}",
-                    f"http://127.0.0.1:8001/static/results/{opt2_filename}"
+                    f"{BASE_URL}/static/results/{opt1_filename}",
+                    f"{BASE_URL}/static/results/{opt2_filename}"
                 ]
                 
                 # Success
@@ -286,8 +287,8 @@ async def simulate_generation(job_id: str, image_url: str, prefs: dict = None):
 
     # Fallback if API fails or no API key, use out pre-generated realistic mock images
     result_urls = [
-        "http://127.0.0.1:8001/static/results/mock_opt1.png",
-        "http://127.0.0.1:8001/static/results/mock_opt2.png"
+        f"{BASE_URL}/static/results/mock_opt1.png",
+        f"{BASE_URL}/static/results/mock_opt2.png"
     ]
     _finalize_generation(job_id, result_urls, prefs)
 
