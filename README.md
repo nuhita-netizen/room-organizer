@@ -30,16 +30,6 @@
 
 ---
 
-## ☁️ Deploy to Render (Free)
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nuhita-netizen/room-organizer)
-
-1. Click the button above and sign in with GitHub
-2. Set the `GOOGLE_API_KEY` environment variable to your [Google AI Studio key](https://aistudio.google.com/app/apikey)
-3. Click **Deploy** — Render handles everything automatically!
-
----
-
 ## 🚀 Getting Started (Local)
 
 ### Prerequisites
