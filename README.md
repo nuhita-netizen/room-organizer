@@ -2,6 +2,8 @@
 
 > An AI-powered interior design assistant that transforms your room photos into styled architectural renders using **Google Gemini Vision** and **Imagen 3.0**.
 
+**Local Access:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/) *(Note: You must start the local server first)*
+
 ![Archi RoomAI](backend/static/generic_room.png)
 
 ---
