@@ -1,6 +1,6 @@
-# Archi RoomAI - UML Diagrams
+# VIBE SPACIEE - UML Diagrams
 
-This document outlines the architecture, data models, and sequence workflows of the **Archi RoomAI** application using Mermaid UML.
+This document outlines the architecture, data models, and sequence workflows of the **VIBE SPACIEE** application using Mermaid UML.
 
 ## 1. Component Architecture
 This diagram shows the high-level system architecture and how different components interact.

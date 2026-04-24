@@ -1,4 +1,4 @@
-# 🏛️ Archi RoomAI
+# 🏛️ VIBE SPACIEE
 
 > An AI-powered interior design assistant that transforms your room photos into styled architectural renders using **Google Gemini Vision** and **Imagen 3.0**.
 
@@ -6,7 +6,7 @@
 
 **Local Access:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/) *(Note: You must start the local server first)*
 
-![Archi RoomAI](backend/static/generic_room.png)
+![VIBE SPACIEE](backend/static/generic_room.png)
 
 ---
 
@@ -17,6 +17,15 @@
 - 💰 **Budget Estimator** — Itemized furniture recommendations scaled to your budget in INR / USD / GBP
 - 🎨 **Before / After View** — Side-by-side comparison of your original room vs. the AI-engineered render
 - ⚡ **Async Pipeline** — Non-blocking background generation with real-time polling
+
+---
+
+## 👥 Target Audience
+
+The system is designed to accommodate 3 primary user archetypes:
+- 🏡 **Homeowners / DIY Decorators**: Users with little to no professional design experience needing an intuitive UI, clear visual outputs, and budget estimations.
+- 📐 **Freelance Interior Designers**: Professionals seeking an AI-assisted tool for rapid prototyping, high-fidelity aesthetic mapping, and accurate cost estimations.
+- 🛋️ **Furniture Vendors (Future Scope)**: Localised vendors who may interface with the platform to supply recommended furniture matching AI-generated designs.
 
 ---
 

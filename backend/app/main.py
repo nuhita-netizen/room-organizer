@@ -9,7 +9,7 @@ from app.api.endpoints import router as api_router
 os.makedirs("static/uploads", exist_ok=True)
 os.makedirs("static/results", exist_ok=True)
 
-app = FastAPI(title="Room Architecture AI Backend")
+app = FastAPI(title="VIBE SPACIEE Backend")
 
 app.add_middleware(
     CORSMiddleware,

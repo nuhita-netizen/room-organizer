@@ -1,6 +1,6 @@
 @echo off
 echo =====================================================
-echo  Archi RoomAI - Starting Backend Server
+echo  VIBE SPACIEE - Starting Backend Server
 echo =====================================================
 cd /d "%~dp0backend"
 

@@ -8,9 +8,9 @@ SRS DOCUMENT
 
 Introduction
 Purpose
-This document defines the comprehensive requirements fo thr Archi RoomAI .The purpose of this document is to establish a definitive technical and functional baseline for Archi RoomAI. This document outlines the architectural requirements , specific functional behaviors and UI/UX standards for the web-based AI interior design platform .
+This document defines the comprehensive requirements fo thr VIBE SPACIEE .The purpose of this document is to establish a definitive technical and functional baseline for VIBE SPACIEE. This document outlines the architectural requirements , specific functional behaviors and UI/UX standards for the web-based AI interior design platform .
 Scope 
-Archi RoomAI is a specialized Generative AI tool for interior design .It brideges the gap between raw space and finished vision by allowing users to :
+VIBE SPACIEE is a specialized Generative AI tool for interior design .It brideges the gap between raw space and finished vision by allowing users to :
 Upload real-world room photo and dimensions
 Apply curated design aesthetics (eg . “Organic Velvet” , “Sage and Stone”).
 View high- fidelity AI –generated transformations
@@ -28,7 +28,13 @@ API : Application Programming Interface
 
 Overall Description
 Product Perspective 
-The system is bridging the gap between raw room imagery and final execution. It is a web- platform that replaces the need for manual spatial reasoning with AI –driven estimation and asset integration .
+The system is bridging the gap between raw room imagery and final execution. It is a web- platform that replaces the need for manual spatial reasoning with AI –driven estimation and asset integration.
+
+User Classes and Characteristics
+The system is designed to accommodate 3 primary user archetypes, each with varying levels of technical and design expertise:
+1. Homeowners / DIY Decorators: Users with little to no professional interior design experience. They require an intuitive UI, clear visual outputs, and easy-to-understand budget estimations to plan their personal spaces.
+2. Freelance Interior Designers: Professionals seeking an AI-assisted tool for rapid prototyping and spatial planning. They require high-fidelity aesthetic mapping and accurate market-rate cost estimations to present to clients.
+3. Furniture Vendors (Future Scope): Localised vendors who may eventually interface with the platform to supply the recommended furniture items matching the AI-generated designs.
 
 Product Functions:
 Image Pre-processing: Validation and normalization of uploaded room photos.

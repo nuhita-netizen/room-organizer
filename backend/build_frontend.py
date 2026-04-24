@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+HTML_CONTENT = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -588,7 +590,7 @@
                 html += `<tr><td><strong>Total Estimate</strong></td><td class="budget-total">${sym}${total.toLocaleString()}</td></tr></table>`;
                 
                 if (resultData.recommendations) {
-                    html += '<h3 style="margin-top: 2rem; margin-bottom:1rem; font-family:'Playfair Display',serif;">Designer Notes</h3><ul style="padding-left:1.5rem; color:var(--text-muted); line-height:1.6;">';
+                    html += '<h3 style="margin-top: 2rem; margin-bottom:1rem; font-family:\'Playfair Display\',serif;">Designer Notes</h3><ul style="padding-left:1.5rem; color:var(--text-muted); line-height:1.6;">';
                     resultData.recommendations.forEach(r => { html += `<li style="margin-bottom:0.5rem;">${r}</li>`; });
                     html += '</ul>';
                 }
@@ -599,3 +601,12 @@
     </script>
 </body>
 </html>
+"""
+
+with open("static/index.html", "w", encoding="utf-8") as f:
+    f.write(HTML_CONTENT)
+    
+with open("../demo.html", "w", encoding="utf-8") as f:
+    f.write(HTML_CONTENT)
+
+print("Frontend HTML generated successfully!")

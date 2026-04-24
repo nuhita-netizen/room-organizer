@@ -1,4 +1,4 @@
-# Room Architecture AI - Stitch Frontend Generation
+# VIBE SPACIEE - Stitch Frontend Generation
 
 I have successfully generated the requested UI screens using Stitch, completely transforming your feature list into a highly polished, premium dark-mode aesthetic. 
 
@@ -33,4 +33,4 @@ Here are the 4 core mobile screens generated for your app:
 ````
 
 > [!TIP]
-> You can view, iterate, and interact with these screens directly in your Stitch dashboard under the project **"Room Architecture AI"**. If you need me to tweak any of the screens (e.g., change the layout, alter a specific color token, or add more screens like a Profile or Settings view), just let me know!
+> You can view, iterate, and interact with these screens directly in your Stitch dashboard under the project **"VIBE SPACIEE"**. If you need me to tweak any of the screens (e.g., change the layout, alter a specific color token, or add more screens like a Profile or Settings view), just let me know!

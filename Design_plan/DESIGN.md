@@ -1,4 +1,4 @@
-# Design System: Archi RoomAI - Organic Velvet
+# Design System: VIBE SPACIEE - Organic Velvet
 **Project ID:** 9230622313347280582
 
 ## 1. Visual Theme & Atmosphere

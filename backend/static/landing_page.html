@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIBE SPACIEE | Design Your Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;700;800;900&amp;family=Manrope:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#001113",
+                        "surface-container-high": "#052f32",
+                        "surface-bright": "#183f42",
+                        "tertiary-fixed-dim": "#ffb4a5",
+                        "primary-fixed-dim": "#82d3de",
+                        "primary": "#82d3de",
+                        "on-secondary-fixed": "#2a1707",
+                        "on-secondary-fixed-variant": "#5a422e",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#001719",
+                        "tertiary-fixed": "#ffdad3",
+                        "surface-container": "#002427",
+                        "outline-variant": "#3e494a",
+                        "secondary-fixed": "#ffdcc3",
+                        "tertiary": "#ffb4a5",
+                        "primary-fixed": "#9ff0fb",
+                        "primary-container": "#006d77",
+                        "on-primary": "#00363c",
+                        "secondary-container": "#5d4430",
+                        "inverse-on-surface": "#0e3639",
+                        "on-secondary": "#412c1a",
+                        "on-surface-variant": "#bec8ca",
+                        "outline": "#889394",
+                        "surface-tint": "#82d3de",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#004f56",
+                        "on-background": "#c3eaed",
+                        "surface": "#001719",
+                        "on-tertiary-fixed-variant": "#802918",
+                        "on-primary-container": "#9becf7",
+                        "tertiary-container": "#a54431",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#006972",
+                        "on-tertiary": "#611205",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#c3eaed",
+                        "surface-container-highest": "#133a3d",
+                        "on-secondary-container": "#d4b299",
+                        "on-surface": "#c3eaed",
+                        "on-primary-fixed": "#001f23",
+                        "on-tertiary-container": "#ffd6ce",
+                        "surface-container-low": "#002022",
+                        "secondary": "#e3c0a6",
+                        "on-tertiary-fixed": "#3e0500",
+                        "secondary-fixed-dim": "#e3c0a6",
+                        "surface-variant": "#133a3d",
+                        "background": "#001719"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Epilogue"],
+                        "display": ["Epilogue"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #001719;
+            color: #c3eaed;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(0, 23, 25, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .editorial-asymmetry {
+            margin-right: clamp(2rem, 15vw, 12rem);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#001719]/70 backdrop-blur-xl">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[#006D77] text-3xl">architecture</span>
+<span class="text-2xl font-bold text-[#006D77] uppercase tracking-widest font-['Epilogue']">VIBE SPACIEE</span>
+</div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="text-[#006D77] font-bold border-b-2 border-[#006D77] pb-1 font-['Manrope'] text-sm tracking-wide" href="#">Philosophy</a>
+<a class="text-slate-400 hover:text-[#006D77] transition-colors font-['Manrope'] text-sm tracking-wide" href="#">Homeowners</a>
+<a class="text-slate-400 hover:text-[#006D77] transition-colors font-['Manrope'] text-sm tracking-wide" href="#">Designers</a>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform duration-300">
+                    Get Started
+                </button>
+</div>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+<!-- Background Visual with Mirage Feel -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40 mix-blend-luminosity scale-105" data-alt="Luxurious minimalist interior blending desert sand textures with deep teal velvet accents, soft golden hour sunlight streaming through architectural windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbBgqrcD14hYueilSPKtwXymP4KTKFUWs8D5-208CG98qDHAqBf_Jemc21aSZTLnCIlKakO650RezbmEi-tUxwTiMLswpg5kJPkXpINga9zHLbljGGaC8bqRUrOb2nrX9AQEBM59XNRjEf19UWLXm3dFsTtttfoqsWsyNPraqk96YzMeWNUe-3SIkxSYrGpGAaVnCRvxPUYB4JmyPMygIhe3NbzKLTvWx5jQuYYdZTpo1wrGf0N20HHTJa2ulsk0UczRC9DGWNyP4"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/80 to-surface"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-start lg:items-center text-left lg:text-center">
+<span class="inline-block py-1 px-4 rounded-full border border-primary/20 bg-surface-container-high text-primary text-xs font-bold uppercase tracking-widest mb-6 font-display">
+                    The Future of Interior Architecture
+                </span>
+<h1 class="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-on-background leading-tight tracking-tighter mb-8 max-w-4xl">
+                    Design Your <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Sanctuary</span> with AI
+                </h1>
+<p class="font-body text-lg md:text-xl text-on-surface-variant max-w-2xl mb-12 editorial-asymmetry">
+                    Where the heat of the desert meets the cooling calm of an oasis. VIBE SPACIEE translates your vision into sophisticated, livable art.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-primary/10">
+                        Start Designing
+                    </button>
+<button class="border border-outline-variant text-on-surface px-10 py-5 rounded-full font-bold text-lg hover:bg-surface-container transition-colors backdrop-blur-md">
+                        Explore Portfolio
+                    </button>
+</div>
+</div>
+</section>
+<!-- Archetype Navigation Section -->
+<section class="py-32 px-6 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-xl">
+<h2 class="font-display text-4xl md:text-5xl font-bold text-on-background mb-6">Tailored for your journey.</h2>
+<p class="text-on-surface-variant font-body">Choose your path in our digital sanctuary. Whether you're crafting a home or building a brand, our AI adapts to your professional scale.</p>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-outline cursor-pointer hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined">west</span>
+</div>
+<div class="w-12 h-12 rounded-full border border-primary flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">east</span>
+</div>
+</div>
+</div>
+<!-- Bento-inspired Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Homeowners Card -->
+<div class="group relative bg-surface-container-high rounded-xl p-10 overflow-hidden min-h-[500px] flex flex-col justify-end transition-all hover:-translate-y-2">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700" data-alt="Cozy sun-drenched living room with terracotta pottery, soft linen sofas, and large potted palms against a teal wall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCokscKRzmNPH419J8GvHG61Xnn5pacZWDO7cwvi3E3nsaSizsC8icIGUYUzARnjOU8GrfN5PKfKTWln-ukV9wiIQ_qpEfgd9_e7dAwlHR8nH01yiEnfzVCQrsU9WHgwNRL-bZ-2afN63D-ZA5U8TPF6aRvPpcsgyUI5Nq7sRRrq1NedH6ruWX-phbWqSBVEov_mm-jmnAcOb4pSkyWMHk62U-OtvwMpnGIFmsghM9u_HhdH7qAPH5ZsO_njdR41kNbqiEnc8rvtWw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high via-surface-container-high/60 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-4">home_pin</span>
+<h3 class="font-display text-3xl font-bold text-on-surface mb-4">Homeowners</h3>
+<p class="text-on-surface-variant mb-8 font-body">Transform Your Space into a personal retreat with AI that understands comfort.</p>
+<button class="bg-tertiary text-on-tertiary px-8 py-3 rounded-full font-bold w-full md:w-auto hover:bg-tertiary-fixed-dim transition-colors">
+                                Transform Your Space
+                            </button>
+</div>
+</div>
+<!-- Designers Card -->
+<div class="group relative bg-surface-container-highest rounded-xl p-10 overflow-hidden min-h-[500px] flex flex-col justify-end transition-all hover:-translate-y-2">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700" data-alt="Modern architectural blueprint on a glass desk overlooking a desert landscape at dusk with atmospheric interior lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkosIF252Svl0R8n2zXBURSogR-cOzuiCkouaHwI2UWqrGf6N3otHSOI5r4RST3QVMl1rN9dLI9R6v3qUEbt0jgeG-6ILqvF3o2oItDnPWBba41ITuGkqIQVm2_NHbvOsewAhMO4L_kQxGIsmxuAv3GgU8DbIEmLngpGKakMREfHVMwtZQHcvx9Jr9wHJ6SE5FFaHz3swUW2p6ZCvGTmG4BDzFGDCxEbe1fta9ZLZd2XDe4abtA49zdiX_6p4IDAJohqeVjzgldUU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest via-surface-container-highest/60 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">draw</span>
+<h3 class="font-display text-3xl font-bold text-on-surface mb-4">Designers</h3>
+<p class="text-on-surface-variant mb-8 font-body">Scale Your Creativity using our pro-grade generation tools and spatial analysis.</p>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-bold w-full md:w-auto hover:bg-primary-fixed-dim transition-colors">
+                                Scale Your Creativity
+                            </button>
+</div>
+</div>
+<!-- Vendors Card -->
+<div class="group relative bg-surface-container rounded-xl p-10 overflow-hidden min-h-[500px] flex flex-col justify-end transition-all hover:-translate-y-2">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist furniture showroom with sleek mid-century modern pieces arranged against a backdrop of desert plants and sand-colored walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb-jaJhIvqJa_PO2DOsZKqr-rOiO_UcVmHVYpK5cDL0o8-xurFw6DHwK-pQBd-G0dUC9wcS2tDia4kmGao8CtR6MJBMy4RCsqbicLIPLmU8g8cmjuEgyIP_9mQf_5jpsZoHCsX4ziKohLaYygewzZ0MKWheZ74Qw3sQudcUXkqVBIlZnJJCqKrUoQ2yxqTFYVclm4LJldL84RaSTmYubWrtPR6bpTp8O94ZIrUc9_uWR_rK2PIlUCi61EgUGZ6oslSbK7G8BWIhdE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-surface-container/60 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4">storefront</span>
+<h3 class="font-display text-3xl font-bold text-on-surface mb-4">Vendors</h3>
+<p class="text-on-surface-variant mb-8 font-body">Expand Your Reach by placing your catalog directly into AI-generated dream rooms.</p>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-bold w-full md:w-auto hover:bg-secondary-fixed transition-colors">
+                                Expand Your Reach
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Highlight Section -->
+<section class="py-32 px-6">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative">
+<div class="aspect-square rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Ultra-modern living space with curved glass walls overlooking a serene desert oasis, featuring warm interior lighting and sand-colored textiles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrtdFy2z3-7w4edu2nNw4RXCyv6ZQXHKblochVWtYW5me53Ftg00LNXZLVHb5FcjMbM8sMPMBI05-2zcTggUfzfME6qRL5BWWHaxjk8BJ1Lqh3P67XeVyGc1JCdpyDro5Iykg8IYHNQerjAdftrdIhxoXrBk5vMbCx-gDim4VJhpw2uU7jdOfSX14fY5MO8aFOfRrpsHYyn8uiJ5721d9XfAK9us4vhAUM_kcSgPceGNzqEAI2-zOtCpEyEzFA3KyjTTNUyX45X6k"/>
+</div>
+<!-- Overlapping Decorative Element -->
+<div class="absolute -bottom-10 -right-10 w-64 h-64 bg-tertiary-container rounded-xl p-8 hidden md:block">
+<p class="text-on-tertiary-container font-display font-bold text-xl leading-snug">Innovative lighting algorithms simulate the exact desert sun.</p>
+<div class="mt-4 flex gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed">wb_sunny</span>
+<span class="material-symbols-outlined text-tertiary-fixed">light_mode</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-tertiary font-bold tracking-widest uppercase text-sm mb-4 font-display">Proprietary AI Engine</h3>
+<h2 class="text-5xl font-display font-bold text-on-background mb-8 leading-tight">The Science of Serenity.</h2>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div>
+<h4 class="font-display font-bold text-xl text-on-surface mb-2">Color Psych Mapping</h4>
+<p class="text-on-surface-variant font-body">Our AI selects palettes based on the psychological impact of desert gradients and oasis teals.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">grid_guides</span>
+</div>
+<div>
+<h4 class="font-display font-bold text-xl text-on-surface mb-2">Spatial Harmony</h4>
+<p class="text-on-surface-variant font-body">Automatically balancing negative space to ensure your room feels like an expansive desert landscape.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">texture</span>
+</div>
+<div>
+<h4 class="font-display font-bold text-xl text-on-surface mb-2">Tactile Realism</h4>
+<p class="text-on-surface-variant font-body">High-fidelity texture synthesis for linen, stone, and sand-washed finishes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#001719] w-full pt-20 pb-10 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-12">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10 mb-16">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-[#006D77] text-2xl">architecture</span>
+<span class="text-lg font-black text-[#006D77] font-['Epilogue'] tracking-widest uppercase">VIBE SPACIEE</span>
+</div>
+<p class="text-slate-500 max-w-sm font-['Manrope']">Crafting digital sanctuaries where professional innovation meets desert-inspired serenity.</p>
+</div>
+<div class="flex flex-wrap gap-8">
+<a class="text-slate-500 hover:text-tertiary transition-colors text-sm font-['Manrope'] tracking-wide" href="#">Philosophy</a>
+<a class="text-slate-500 hover:text-tertiary transition-colors text-sm font-['Manrope'] tracking-wide" href="#">Homeowners</a>
+<a class="text-slate-500 hover:text-tertiary transition-colors text-sm font-['Manrope'] tracking-wide" href="#">Designers</a>
+<a class="text-slate-500 hover:text-tertiary transition-colors text-sm font-['Manrope'] tracking-wide" href="#">Vendors</a>
+<a class="text-slate-500 hover:text-tertiary transition-colors text-sm font-['Manrope'] tracking-wide" href="#">Privacy</a>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
+<p class="text-slate-500 text-sm font-['Manrope']">© 2024 VIBE SPACIEE. Designed for Serenity.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors">language</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors">verified_user</span>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Make links that look like primary buttons go to upload page
+    const links = Array.from(document.querySelectorAll('a, div'));
+    const startBtns = links.filter(el => el.textContent.includes('Start Designing') || el.textContent.includes('Get Started'));
+    startBtns.forEach(btn => {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'room_upload.html';
+        });
+    });
+});
+</script>
+
+</body></html>
