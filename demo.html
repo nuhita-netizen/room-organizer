@@ -451,7 +451,8 @@
     </div>
 
     <script>
-        const API_BASE = "http://127.0.0.1:8001/api/v1";
+        // Use window.location.origin to automatically handle both localhost and production
+        const API_BASE = window.location.origin + "/api/v1";
         
         let selectedFile = null;
         let roomValidated = false;
