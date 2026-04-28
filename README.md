@@ -177,4 +177,10 @@ While the current version of **VIBE SPACIEE** serves as a high-fidelity prototyp
 3. **User Authentication & Cloud Saves**: Implementing Google/Apple OAuth and a PostgreSQL database (hosted on Google Cloud) to allow users to save, share, and export their design portfolios across multiple devices.
 4. **Augmented Reality (AR) Overlay**: Developing a mobile-first PWA feature that leverages WebXR to project the generated 3D room renders back onto the user's physical space using their smartphone camera.
 
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. This is an open-source license that perfectly fits the requirements for the Google Solution Challenge 2026. See the `LICENSE` file for more details.
+
 
