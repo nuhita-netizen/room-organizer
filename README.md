@@ -112,6 +112,36 @@ Navigate to **http://127.0.0.1:8001** in your browser.
 
 ---
 
+## ☁️ Google Cloud Deployment
+
+This project is fully configured for deployment on Google Cloud, which is highly recommended for scalability and handling the AI compute models (Gemini/Imagen). You can deploy using either **Google Cloud Run** (recommended) or **Google App Engine**.
+
+### Method 1: Google Cloud Run (Docker Container)
+This repository includes a `Dockerfile` optimized for Cloud Run.
+
+1. Install the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install).
+2. Authenticate and set your project:
+   ```bash
+   gcloud auth login
+   gcloud config set project YOUR_PROJECT_ID
+   ```
+3. Deploy directly using the Cloud Build pack:
+   ```bash
+   gcloud run deploy vibe-spaciee --source . --region us-central1 --allow-unauthenticated
+   ```
+4. *Important:* Ensure you set the `GOOGLE_API_KEY` securely in the Cloud Run service environment variables via the Google Cloud Console.
+
+### Method 2: Google App Engine (Standard)
+An `app.yaml` file is included for instant App Engine deployment.
+
+1. From the root directory, run:
+   ```bash
+   gcloud app deploy app.yaml
+   ```
+2. Set your environment variables in the App Engine dashboard.
+
+---
+
 ## 📁 Project Structure
 
 ```
