@@ -198,6 +198,21 @@ The app ships with a single opinionated design theme:
 
 ---
 
+## 🎯 Minimum Viable Product (MVP)
+
+The MVP for **VIBE SPACIEE** focuses strictly on the core value proposition: allowing users to effortlessly visualize high-fidelity interior design transformations and understand associated costs.
+
+**Core MVP Features:**
+- **Frictionless Image Upload:** Stateless web interface for uploading room photos.
+- **Intelligent Validation:** Automated AI screening (Gemini Vision) to ensure the uploaded image is a valid interior space.
+- **One-Click Generative Design:** Selection of a core architectural style ("Minimalist") yielding two photorealistic AI redesigns (Imagen 3.0).
+- **Automated Budget Estimation:** Dynamic calculation engine providing an itemized cost breakdown.
+- **Before/After Dashboard:** Visual comparison tool for immediate feedback.
+
+*(Features like User Accounts, E-Commerce Integrations, and AR Overlays are intentionally excluded from the MVP to keep the prototype fast and lean).*
+
+---
+
 ## 🔮 Future Development Scope
 
 While the current version of **VIBE SPACIEE** serves as a high-fidelity prototype, the architecture is designed to scale with the following future enhancements:
