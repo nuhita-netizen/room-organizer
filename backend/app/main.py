@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from app.api.endpoints import router as api_router
 
-# Ensure required runtime directories exist (e.g. on Render where gitignored dirs are absent)
+# Ensure required runtime directories exist (e.g. on Google Cloud where gitignored dirs are absent)
 os.makedirs("static/uploads", exist_ok=True)
 os.makedirs("static/results", exist_ok=True)
 

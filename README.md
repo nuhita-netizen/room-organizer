@@ -2,7 +2,7 @@
 
 > An AI-powered interior design assistant that transforms your room photos into styled architectural renders using **Google Gemini Vision** and **Imagen 3.0**.
 
-**Live Demo:** [https://room-organizer.onrender.com/](https://room-organizer.onrender.com/)
+**Live Demo:** [Pending Google Cloud Deployment](#)
 
 **Local Access:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/) *(Note: You must start the local server first)*
 
