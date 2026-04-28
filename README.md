@@ -20,6 +20,22 @@
 
 ---
 
+## 📸 Application Screenshots
+
+### 1. Landing Page
+![Landing Page](assets/landing_page.png)
+
+### 2. Room Upload
+![Room Upload](assets/upload_page.png)
+
+### 3. Design Preferences
+![Design Preferences](assets/preferences_page.png)
+
+### 4. Results Dashboard
+![Results Dashboard](assets/results_dashboard.png)
+
+---
+
 ## 👥 Target Audience
 
 The system is designed to accommodate 3 primary user archetypes:
