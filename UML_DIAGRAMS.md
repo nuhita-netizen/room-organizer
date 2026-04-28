@@ -31,22 +31,22 @@ sequenceDiagram
     participant Imagen as Google Imagen (Generation)
 
     User->>Frontend: Upload Room Image
-    Frontend->>FastAPI: POST /api/v1/upload
-    FastAPI-->>Frontend: UploadResponse (image_url)
+    Frontend->>FastAPI: Upload Image
+    FastAPI-->>Frontend: Confirm Upload
 
     User->>Frontend: "Validate Room"
-    Frontend->>FastAPI: POST /api/v1/validate-room
+    Frontend->>FastAPI: Analyze Room (AI)
     FastAPI->>Gemini: Verify if image is a room
     Gemini-->>FastAPI: Validation boolean
     FastAPI-->>Frontend: Is Valid Room?
 
     User->>Frontend: Click "Generate Design"
-    Frontend->>FastAPI: POST /api/v1/generate
+    Frontend->>FastAPI: Generate Design
     FastAPI->>FastAPI: Spawn background task
-    FastAPI-->>Frontend: GenerateResponse (generation_id, PENDING)
+    FastAPI-->>Frontend: Acknowledge Request
 
-    loop Polling (every 2-3s)
-        Frontend->>FastAPI: GET /api/v1/generations/{id}
+    loop Processing
+        Frontend->>FastAPI: Check Status
         alt Generating
             FastAPI-->>Frontend: status: IN_PROGRESS
         end
@@ -55,7 +55,7 @@ sequenceDiagram
             Imagen-->>FastAPI: Generated Render URLs & details
         end
         alt Complete
-            FastAPI-->>Frontend: GenerationStatusResponse (SUCCESS, GenerationResultData)
+            FastAPI-->>Frontend: Show Results
         end
     end
     Frontend->>User: Display Interactive Renders & Budget Estimation

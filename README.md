@@ -168,6 +168,17 @@ The app ships with a single opinionated design theme:
 
 ---
 
+## 🔮 Future Development Scope
+
+While the current version of **VIBE SPACIEE** serves as a high-fidelity prototype, the architecture is designed to scale with the following future enhancements:
+
+1. **Live Object Segmentation (YOLOv8)**: Transitioning from the simulated semantic segmentation pipeline to a live `ultralytics` PyTorch integration to automatically mask existing doors, windows, and structural load-bearing walls during AI generation.
+2. **E-Commerce Vendor API Integration**: Upgrading the Budget Estimator to pull live pricing and availability from furniture retailers (e.g., IKEA, Wayfair), allowing users to click and purchase the exact items generated in the renders.
+3. **User Authentication & Cloud Saves**: Implementing Google/Apple OAuth and a PostgreSQL database (hosted on Google Cloud) to allow users to save, share, and export their design portfolios across multiple devices.
+4. **Augmented Reality (AR) Overlay**: Developing a mobile-first PWA feature that leverages WebXR to project the generated 3D room renders back onto the user's physical space using their smartphone camera.
+
+---
+
 ## 📄 License
 
 MIT License — free to use, modify, and distribute.
