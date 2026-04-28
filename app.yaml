@@ -1,0 +1,12 @@
+runtime: python311
+
+# The entrypoint command to run the FastAPI app
+entrypoint: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+# App Engine will automatically find the requirements.txt if it's in the same directory,
+# but since ours is in backend/, we specify env variables if needed.
+env_variables:
+  PYTHON_VERSION: 3.11.0
+
+# Optional: Handlers for static files can be defined here, 
+# but FastAPI is already serving them via StaticFiles in main.py.
