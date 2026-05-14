@@ -2,7 +2,7 @@
 
 > An AI-powered interior design assistant that transforms your room photos into styled architectural renders using **Google Gemini Vision** and **Imagen 3.0**.
 
-**Live Demo:** [Pending Google Cloud Deployment](#)
+**Live Demo:** [VIBE SPACIEE Live App](https://vibe-spaciee-609829083762.us-central1.run.app/)
 
 **Local Access:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/) *(Note: You must start the local server first)*
 
@@ -195,21 +195,6 @@ The app ships with a single opinionated design theme:
 - The **YOLOv8 segmentation** step is currently simulated (1-second delay + console logs). The `torch` dependency is included for a future real integration with the `ultralytics` library.
 - When the Imagen 3.0 API quota is exceeded or unavailable, the app automatically falls back to pre-generated mock renders (`mock_opt1.png`, `mock_opt2.png`).
 - The `GOOGLE_API_KEY` must be set in `backend/.env` — never commit the actual key.
-
----
-
-## 🎯 Minimum Viable Product (MVP)
-
-The MVP for **VIBE SPACIEE** focuses strictly on the core value proposition: allowing users to effortlessly visualize high-fidelity interior design transformations and understand associated costs.
-
-**Core MVP Features:**
-- **Frictionless Image Upload:** Stateless web interface for uploading room photos.
-- **Intelligent Validation:** Automated AI screening (Gemini Vision) to ensure the uploaded image is a valid interior space.
-- **One-Click Generative Design:** Selection of a core architectural style ("Minimalist") yielding two photorealistic AI redesigns (Imagen 3.0).
-- **Automated Budget Estimation:** Dynamic calculation engine providing an itemized cost breakdown.
-- **Before/After Dashboard:** Visual comparison tool for immediate feedback.
-
-*(Features like User Accounts, E-Commerce Integrations, and AR Overlays are intentionally excluded from the MVP to keep the prototype fast and lean).*
 
 ---
 
