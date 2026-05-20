@@ -1,6 +1,11 @@
+import os
 import google.generativeai as genai
 from PIL import Image
-genai.configure(api_key="AIzaSyC-Es0lKWG4MX9lzg_CUhc_1oBL7mUQrac")
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.environ.get("GEMINI_API_KEY")
+genai.configure(api_key=api_key)
 model = genai.ImageGenerationModel("imagen-3.0-generate-001")
 print("Model loaded.")
 # try to call with image

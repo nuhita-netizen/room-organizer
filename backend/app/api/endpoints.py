@@ -13,7 +13,7 @@ try:
 except ImportError:
     pass
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 BASE_URL = os.getenv("APP_BASE_URL", "http://127.0.0.1:8001").rstrip("/")
 
 from app.models.schemas import (
@@ -181,7 +181,7 @@ async def validate_room(file: UploadFile = File(...)):
         import google.generativeai as genai
         from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
-        genai.configure(api_key=GOOGLE_API_KEY)
+        genai.configure(api_key=GEMINI_API_KEY)
         model = genai.GenerativeModel("gemini-1.5-flash")
 
         buf = BytesIO()
@@ -256,7 +256,7 @@ async def analyze_room(file: UploadFile = File(...)):
         import google.generativeai as genai
         from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
-        genai.configure(api_key=GOOGLE_API_KEY)
+        genai.configure(api_key=GEMINI_API_KEY)
         model = genai.GenerativeModel("gemini-1.5-flash")
 
         buf = BytesIO()
@@ -440,7 +440,7 @@ async def simulate_generation(job_id: str, image_url: str, prefs: dict = None):
 
         await simulate_yolov8_segmentation(job_id, input_path)
 
-        api_key = GOOGLE_API_KEY
+        api_key = GEMINI_API_KEY
         if api_key and os.path.exists(input_path):
             try:
                 import google.generativeai as genai

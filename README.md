@@ -1,4 +1,4 @@
-# 🏛️ VIBE SPACIEE
+#  VIBE SPACIEE
 
 > An AI-powered interior design assistant that transforms your room photos into styled architectural renders using **Google Gemini Vision** and **Imagen 3.0**.
 
