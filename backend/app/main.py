@@ -23,7 +23,7 @@ app.include_router(api_router)
 
 @app.get("/")
 def serve_frontend():
-    return FileResponse("static/landing_page.html")
+    return FileResponse("static/index.html")
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
