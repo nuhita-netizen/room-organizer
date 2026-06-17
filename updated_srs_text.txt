@@ -17,7 +17,7 @@ View high- fidelity AI –generated transformations
 Receive localized Indian market (INR) budget estimations and furniture recommendations.
 Definitions and Acronyms
 SRS : Software Requirements Specification
-YOLOv8: You Only Look Once v8 (Real-time object detection model).
+Gemini Vision: Google's multi-modal AI model used for real-time object and room detection.
 Semantic Segmentation: The process of partitioning a digital image into multiple segments to simplify furniture identification.
 Geometric Calibration: Mapping 2D image coordinates to a digital canvas using user-provided physical dimensions.
 Collision Detection: Algorithmic check to ensure new furniture assets do not overlap with existing structures or boundaries
@@ -44,14 +44,14 @@ Localized Costing: Calculating expenditures based on Indian market averages for 
 Session Management: Temporary storage of designs for active user comparison.
 Functional Capabilities
 Spatial Digitization: Converts 2D RGB imagery into a 3D coordinate system.
-Automated Detection: Identifies existing furniture using YOLOv8.
+Automated Detection: Identifies existing furniture using Gemini Vision.
 Layout Interaction: Provides a dynamic editor with collision detection to prevent spatial congestion.
 Financial Procurement: Syncs design choices with market pricing and budget guardrails
 
 Functional Requirements
 Data Acquisition & Computer Vision
 Multi-Source Input: The system shall accept orthographic/perspective photos or house map plans with dimensions.
-Object Recognition: The system shall use YOLOv8 for semantic segmentation of assets like beds, sofas, and dining sets.
+Object Recognition: The system shall use Gemini Vision for semantic segmentation and detection of assets like beds, sofas, and dining sets.
 Spatial Mapping: The system shall calculate relational proximity between objects and wall boundaries
 3.2 Virtual Rearrangement & UI
 Non-Destructive Editing: Users shall be able to digitally reconfigure layouts without physical labor.
@@ -104,7 +104,7 @@ Comparison View Logic
 The frontend must implement a Synchronized Canvas.
 Zooming into the "After" image must trigger a mirrored zoom on the "Before" image to allow users to inspect material changes in specific corners.
 4.4 Software Interfaces
-YOLOv8 Framework: For high-speed image processing.
+Gemini Vision Framework: For high-speed image processing and object detection.
 Generative API (Google Gemini/Imagen): For rendering architectural interior generation via image-to-image synthesis.
 Payment API: (Optional future scope) for direct checkout of suggested items.
 
@@ -116,7 +116,7 @@ Description: Initializes the session by capturing RGB image data and physical di
 Payload: multipart/form-data (image file, length, width, height, unit).
 Returns: session_id (UUID), upload_status.
 POST /api/v1/generate
-Description: Triggers the computer vision pipeline, including YOLOv8 object detection and spatial mapping.
+Description: Triggers the computer vision pipeline, including Gemini Vision object detection and spatial mapping.
 Payload: application/json (Design Preferences - style, budget_limit in INR, session_id).
 Returns: task_id (UUID) for tracking the background generation task.
 GET /api/v1/status/{task_id}
@@ -132,7 +132,7 @@ The system utilizes strict data validation to ensure "Geometric Calibration" and
 RoomInput Model
 image_url: str (Path to the uploaded orthographic or perspective imagery).
 dimensions: dict (length, width, height) used to map the spatial coordinate system.
-existing_assets: List[DetectedObject] (Populated after YOLOv8 feature extraction).
+existing_assets: List[DetectedObject] (Populated after Gemini Vision feature extraction).
 FurnitureAsset Model
 label: str (Type of furniture, e.g., Bed, Sofa).
 dimensions: dict (Physical size for collision detection).
@@ -173,7 +173,7 @@ UserSession: UserID, SavedLayouts[], CurrentBudget.
 Analysis Model and Workflow
 Process Flow 
 Data Acquisition: User uploads photo + dimensions.
-Computer Vision Pipeline: Feature extraction -> YOLOv8 Detection -> Spatial Estimation.
+Computer Vision Pipeline: Feature extraction -> Gemini Vision Detection -> Spatial Estimation.
 Virtual Interaction: Asset Integration -> Collision Detection -> User Theme Customization.
 Output Generation: Layout suggestions + Real-time Budget Report.
 

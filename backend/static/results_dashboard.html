@@ -94,12 +94,12 @@
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-teal-950/70 backdrop-blur-xl">
 <div class="flex items-center gap-4">
-<button class="hover:scale-105 transition-transform active:scale-95 active:duration-150">
+<button class="hover:scale-105 transition-transform active:scale-95 active:duration-150" onclick="window.history.back()">
 <span class="material-symbols-outlined text-teal-500">arrow_back</span>
 </button>
 <h1 class="font-['Epilogue'] tracking-tight font-bold text-teal-500 text-xl">Design Results</h1>
 </div>
-<button class="hover:scale-105 transition-transform active:scale-95 active:duration-150">
+<button class="hover:scale-105 transition-transform active:scale-95 active:duration-150" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined text-teal-500">share</span>
 </button>
 </header>
@@ -136,16 +136,16 @@
 <span class="text-secondary text-2xl font-headline">₹</span>
 <span class="text-secondary text-5xl font-headline tracking-tighter">8,45,000</span>
 </div>
-<a class="inline-flex items-center gap-2 mt-4 text-primary font-semibold hover:gap-3 transition-all" href="#">
+<a class="inline-flex items-center gap-2 mt-4 text-primary font-semibold hover:gap-3 transition-all" href="#" onclick="showComingSoon(event)">
                             View detailed breakdown
                             <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 <div class="space-y-4">
-<button class="w-full bg-primary text-on-primary py-4 rounded-full font-bold text-sm tracking-wide hover:scale-[1.02] active:scale-95 transition-transform">
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-bold text-sm tracking-wide hover:scale-[1.02] active:scale-95 transition-transform" onclick="showComingSoon(event)">
                             DOWNLOAD FULL PROPOSAL
                         </button>
-<button class="w-full border-2 border-outline-variant text-secondary-fixed py-4 rounded-full font-bold text-sm tracking-wide hover:bg-surface-container-high transition-colors">
+<button class="w-full border-2 border-outline-variant text-secondary-fixed py-4 rounded-full font-bold text-sm tracking-wide hover:bg-surface-container-high transition-colors" onclick="showComingSoon(event)">
                             CONNECT WITH DESIGNER
                         </button>
 </div>
@@ -243,31 +243,62 @@
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-4 py-3 mx-auto max-w-md bg-teal-950/80 backdrop-blur-2xl rounded-full shadow-[0_40px_40px_-5px_rgba(0,23,25,0.08)]">
-<button class="flex flex-col items-center justify-center text-teal-500/60 hover:text-teal-200 transition-colors active:scale-90 duration-300">
+<button class="flex flex-col items-center justify-center text-teal-500/60 hover:text-teal-200 transition-colors active:scale-90 duration-300" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined">auto_awesome</span>
 <span class="font-['Manrope'] text-[11px] uppercase tracking-widest font-semibold mt-1">Inspire</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-teal-600 text-white rounded-full w-12 h-12 active:scale-90 transition-all duration-300">
+<button class="flex flex-col items-center justify-center bg-teal-600 text-white rounded-full w-12 h-12 active:scale-90 transition-all duration-300" onclick="window.location.href='room_upload.html'">
 <span class="material-symbols-outlined">architecture</span>
 <!-- Label hidden in active state according to design -->
 </button>
-<button class="flex flex-col items-center justify-center text-teal-500/60 hover:text-teal-200 transition-colors active:scale-90 duration-300">
+<button class="flex flex-col items-center justify-center text-teal-500/60 hover:text-teal-200 transition-colors active:scale-90 duration-300" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined">inventory_2</span>
 <span class="font-['Manrope'] text-[11px] uppercase tracking-widest font-semibold mt-1">Library</span>
 </button>
-<button class="flex flex-col items-center justify-center text-teal-500/60 hover:text-teal-200 transition-colors active:scale-90 duration-300">
+<button class="flex flex-col items-center justify-center text-teal-500/60 hover:text-teal-200 transition-colors active:scale-90 duration-300" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined">person</span>
 <span class="font-['Manrope'] text-[11px] uppercase tracking-widest font-semibold mt-1">Account</span>
 </button>
 </nav>
 
 <script>
+function showComingSoon(e) {
+    if(e) e.preventDefault();
+    let toast = document.getElementById('coming-soon-toast');
+    if(!toast) {
+        toast = document.createElement('div');
+        toast.id = 'coming-soon-toast';
+        toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-[#133a3d] text-[#c3eaed] px-6 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-[100] font-bold flex items-center gap-2 border border-[#3e494a]';
+        toast.innerHTML = `<span class="material-symbols-outlined text-[#82d3de]">build</span> <span>Coming Soon!</span>`;
+        document.body.appendChild(toast);
+    }
+    toast.classList.remove('opacity-0');
+    setTimeout(() => toast.classList.add('opacity-0'), 3000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const jobId = params.get('job_id');
+    const styleParam = params.get('style');
+    const budgetParam = params.get('budget');
 
     const heroImg = document.querySelector('section.relative img.object-cover');
-    const priceEl = Array.from(document.querySelectorAll('span, p, h2')).find(el => el.textContent.includes('₹') && el.classList.contains('text-4xl') || el.classList.contains('text-5xl'));
+    const priceEl = Array.from(document.querySelectorAll('span, p, h2')).find(el => el.textContent.includes('₹') && (el.classList.contains('text-4xl') || el.classList.contains('text-5xl')));
+    const titleEl = document.querySelector('h2.font-headline');
+    const subtitleEl = Array.from(document.querySelectorAll('p')).find(el => el.textContent.includes('match the Desert Oasis style'));
+
+    if(styleParam && titleEl) {
+        titleEl.innerText = `The ${styleParam} Living Room`;
+        if (subtitleEl) {
+            subtitleEl.innerText = `Hand-selected pieces to match the ${styleParam} style.`;
+        }
+    }
+
+    if(budgetParam && priceEl) {
+        // Just directly set it. The poll logic might overwrite it later if API is live.
+        priceEl.innerText = budgetParam.includes('₹') ? budgetParam : budgetParam;
+    }
+
     const sections = document.querySelectorAll('section');
     let furnitureListContainer = null;
     if(sections.length > 1) {

@@ -93,10 +93,10 @@
 <!-- TopAppBar -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#001719] flex justify-between items-center w-full px-6 h-16">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-[#006D77] cursor-pointer">menu</span>
+<span class="material-symbols-outlined text-[#006D77] cursor-pointer" onclick="window.history.back()">arrow_back</span>
 </div>
 <h1 class="font-['Epilogue'] tracking-tight font-bold text-lg text-[#006D77]">VIBE SPACIEE</h1>
-<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container cursor-pointer" onclick="showComingSoon(event)">
 <img alt="User profile avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional architect looking confident, neutral studio lighting, high resolution" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx4h2e97TkQV6vYH8XJ_XfjwJfXGTPzWrtuaIjgttAbckToytP2Mbjx_97oXhiZh1mWx8liw5XefE4V2F2pbjllqhenvb14DWYs8KWzwQDncEc58wOiHdwvU_tZDpogKh5rvzfx_efj6YK1Fwn8F9GiLG_MkHpMukSD7q81jJXDuUKU05Fjk52VdksBOVTtFpZZ52wQ9RlRr8XckJvWZUvlG6uIShjCPNn96eQx1LV9-HaqNchWmjRn9fgWK4R7xXBobhrh8oYOVs"/>
 </div>
 </header>
@@ -153,12 +153,13 @@
 <div class="space-y-6">
 <div class="flex justify-between items-end">
 <h3 class="font-display text-2xl font-bold text-primary">Existing Objects</h3>
-<button class="flex items-center gap-1 text-primary-fixed-dim hover:text-primary transition-colors">
+<button class="flex items-center gap-1 text-primary-fixed-dim hover:text-primary transition-colors" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined text-lg">add_circle</span>
 <span class="text-xs font-bold uppercase tracking-tight">Add Item Manually</span>
 </button>
 </div>
 <div class="space-y-3">
+<div id="items-container" class="space-y-3">
 <!-- Item 1 -->
 <div class="flex items-center justify-between p-4 bg-surface-container rounded-lg group hover:bg-surface-container-high transition-colors">
 <div class="flex items-center gap-4">
@@ -189,9 +190,10 @@
 <span class="material-symbols-outlined text-sm">close</span>
 </button>
 </div>
-<!-- Empty State / Add Suggestion -->
-<div class="flex items-center justify-center p-6 border border-outline-variant/10 border-dashed rounded-lg">
-<p class="text-on-surface-variant text-sm italic">Scanning room for more items...</p>
+</div>
+<!-- Detection Status -->
+<div id="detection-status" class="flex flex-col items-center justify-center p-6 border border-outline-variant/10 border-dashed rounded-lg gap-2">
+<p class="text-on-surface-variant text-sm italic">Upload a room image to detect items...</p>
 </div>
 </div>
 </div>
@@ -205,20 +207,20 @@
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-4 py-2">
-<div class="bg-[#001719]/70 backdrop-blur-xl fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] rounded-full shadow-[0_40px_40px_-5px_rgba(0,23,25,0.08)] flex justify-around items-center px-4 py-3">
-<div class="flex flex-col items-center gap-1 text-teal-700 p-3 hover:opacity-80 transition-all cursor-pointer">
+<div class="bg-[#001719]/70 backdrop-blur-xl fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full shadow-[0_40px_40px_-5px_rgba(0,23,25,0.08)] flex justify-around items-center px-4 py-3">
+<div class="flex flex-col items-center gap-1 text-teal-700 p-3 hover:opacity-80 transition-all cursor-pointer" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined">architecture</span>
 <span class="font-['Manrope'] text-[11px] font-medium">Design</span>
 </div>
-<div class="flex flex-col items-center gap-1 bg-[#006D77] text-white rounded-full p-3 px-6 transition-all scale-105 duration-200 cursor-pointer">
+<div class="flex flex-col items-center gap-1 bg-[#006D77] text-white rounded-full p-3 px-6 transition-all scale-105 duration-200 cursor-pointer" onclick="event.preventDefault()">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
 <span class="font-['Manrope'] text-[11px] font-medium">Upload</span>
 </div>
-<div class="flex flex-col items-center gap-1 text-teal-700 p-3 hover:opacity-80 transition-all cursor-pointer">
+<div class="flex flex-col items-center gap-1 text-teal-700 p-3 hover:opacity-80 transition-all cursor-pointer" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined">folder_open</span>
 <span class="font-['Manrope'] text-[11px] font-medium">Projects</span>
 </div>
-<div class="flex flex-col items-center gap-1 text-teal-700 p-3 hover:opacity-80 transition-all cursor-pointer">
+<div class="flex flex-col items-center gap-1 text-teal-700 p-3 hover:opacity-80 transition-all cursor-pointer" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined">settings</span>
 <span class="font-['Manrope'] text-[11px] font-medium">Settings</span>
 </div>
@@ -226,6 +228,20 @@
 </nav>
 
 <script>
+function showComingSoon(e) {
+    if(e) e.preventDefault();
+    let toast = document.getElementById('coming-soon-toast');
+    if(!toast) {
+        toast = document.createElement('div');
+        toast.id = 'coming-soon-toast';
+        toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-[#133a3d] text-[#c3eaed] px-6 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-[100] font-bold flex items-center gap-2 border border-[#3e494a]';
+        toast.innerHTML = `<span class="material-symbols-outlined text-[#82d3de]">build</span> <span>Coming Soon!</span>`;
+        document.body.appendChild(toast);
+    }
+    toast.classList.remove('opacity-0');
+    setTimeout(() => toast.classList.add('opacity-0'), 3000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const uploadBox = document.querySelector('.group.relative');
     if(uploadBox) {
@@ -236,6 +252,25 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadBox.appendChild(fileInput);
 
         uploadBox.addEventListener('click', () => fileInput.click());
+        
+        uploadBox.addEventListener('dragover', (e) => { 
+            e.preventDefault(); 
+            uploadBox.classList.add('border-primary'); 
+        });
+        
+        uploadBox.addEventListener('dragleave', () => { 
+            uploadBox.classList.remove('border-primary'); 
+        });
+        
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.classList.remove('border-primary');
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                const event = new Event('change');
+                fileInput.dispatchEvent(event);
+            }
+        });
 
         fileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -243,6 +278,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const textElem = uploadBox.querySelector('.font-headline') || uploadBox.querySelector('span');
             if(textElem) textElem.innerText = 'Uploading and Analyzing...';
+            
+            // Show uploaded image immediately so user gets feedback
+            const imgDisplay = uploadBox.querySelector('img');
+            if (imgDisplay) {
+                imgDisplay.src = URL.createObjectURL(file);
+                imgDisplay.classList.remove('opacity-10', 'group-hover:opacity-20');
+                imgDisplay.classList.add('opacity-100');
+            }
+            
+            const detectionStatus = document.getElementById('detection-status');
+            if(detectionStatus) {
+                detectionStatus.style.display = 'flex';
+                detectionStatus.innerHTML = `
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+                    <p class="text-primary text-sm italic font-medium mt-2">Scanning room for items...</p>
+                `;
+            }
 
             const formData = new FormData();
             formData.append('file', file);
@@ -250,53 +302,95 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // 1. Upload
                 const upRes = await fetch('http://127.0.0.1:8001/api/v1/upload', { method: 'POST', body: formData });
+                if (!upRes.ok) {
+                    if (upRes.status === 429) throw new Error('API Quota Exceeded');
+                    throw new Error('Upload failed');
+                }
                 const upData = await upRes.json();
                 if(upData.image_url) localStorage.setItem('vibes_image_url', upData.image_url);
 
                 // 2. Validate
                 if(textElem) textElem.innerText = 'Validating Room...';
                 const valRes = await fetch('http://127.0.0.1:8001/api/v1/validate-room', { method: 'POST', body: formData });
+                if (!valRes.ok) {
+                    if (valRes.status === 429) throw new Error('API Quota Exceeded');
+                    throw new Error('Validation failed');
+                }
                 const valData = await valRes.json();
                 if(!valData.is_room) {
                     alert('This does not look like an interior room. Reason: ' + valData.reason);
                     if(textElem) textElem.innerText = 'Upload Room Photos/Video';
+                    if(detectionStatus) {
+                        detectionStatus.innerHTML = `<p class="text-on-surface-variant text-sm italic">Upload a room image to detect items...</p>`;
+                    }
                     return;
                 }
 
                 // 3. Analyze
                 if(textElem) textElem.innerText = 'Analyzing Space...';
                 const anaRes = await fetch('http://127.0.0.1:8001/api/v1/analyze-room', { method: 'POST', body: formData });
+                if (!anaRes.ok) {
+                    if (anaRes.status === 429) throw new Error('API Quota Exceeded');
+                    throw new Error('Analysis failed');
+                }
                 const anaData = await anaRes.json();
 
                 if(anaData.success) {
                     localStorage.setItem('vibes_suggestions', JSON.stringify(anaData.suggestions || []));
-                    const sections = document.querySelectorAll('section');
-                    let itemsContainer = null;
-                    if(sections.length > 1) {
-                        itemsContainer = sections[1].querySelector('.space-y-4') || sections[1].querySelector('div');
-                    }
+                    const itemsContainer = document.getElementById('items-container');
+                    
                     if(itemsContainer && anaData.detected_items) {
                         itemsContainer.innerHTML = '';
                         anaData.detected_items.forEach(item => {
                             const el = document.createElement('div');
-                            el.className = 'flex justify-between items-center bg-[#133a3d] py-3 px-6 rounded-full text-[#c3eaed]';
-                            el.innerHTML = `<span class="font-medium text-sm">${item}</span>`;
+                            el.className = 'flex items-center justify-between p-4 bg-surface-container rounded-lg group hover:bg-surface-container-high transition-colors';
+                            el.innerHTML = `
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center text-primary">
+                                        <span class="material-symbols-outlined">category</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-on-surface">${item}</h4>
+                                        <p class="text-xs text-on-surface-variant">Detected via AI scan</p>
+                                    </div>
+                                </div>
+                                <button class="opacity-0 group-hover:opacity-100 p-2 text-error hover:bg-error-container/20 rounded-full transition-all">
+                                    <span class="material-symbols-outlined text-sm">close</span>
+                                </button>
+                            `;
                             itemsContainer.appendChild(el);
                         });
                     }
                 }
+                
+                if(detectionStatus) {
+                    detectionStatus.innerHTML = `
+                        <span class="material-symbols-outlined text-primary text-3xl">check_circle</span>
+                        <p class="text-primary text-sm font-bold mt-1">Detection Complete!</p>
+                    `;
+                    setTimeout(() => {
+                        detectionStatus.style.display = 'none';
+                    }, 3000);
+                }
+                
                 if(textElem) textElem.innerText = 'Analysis Complete!';
                 
-                // Show uploaded image
-                const imgDisplay = uploadBox.querySelector('img');
-                if (imgDisplay) {
-                    imgDisplay.src = URL.createObjectURL(file);
-                    imgDisplay.classList.remove('opacity-10');
-                    imgDisplay.classList.add('opacity-100');
-                }
             } catch(err) {
                 console.error(err);
                 if(textElem) textElem.innerText = 'Error occurred';
+                if(detectionStatus) {
+                    let errorMsg = 'Failed to analyze room. Please try again.';
+                    if (err.message && err.message.toLowerCase().includes('quota')) {
+                        errorMsg = 'API Quota Exceeded. Please try again later.';
+                    } else if (err.message && (err.message.toLowerCase().includes('fetch') || err.message.toLowerCase().includes('network'))) {
+                        errorMsg = 'API is down or unreachable. Please try again later.';
+                    }
+                    
+                    detectionStatus.innerHTML = `
+                        <span class="material-symbols-outlined text-error text-3xl mb-1">error</span>
+                        <p class="text-error text-sm font-bold text-center">${errorMsg}</p>
+                    `;
+                }
             }
         });
     }

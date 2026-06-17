@@ -21,11 +21,9 @@ app.add_middleware(
 
 app.include_router(api_router)
 
-
 @app.get("/")
 def serve_frontend():
-    return FileResponse("static/index.html")
+    return FileResponse("static/landing_page.html")
 
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 

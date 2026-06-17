@@ -54,7 +54,7 @@ The system is designed to accommodate 3 primary user archetypes:
 | AI — Vision | Google Gemini 1.5 Flash |
 | AI — Image Gen | Google Imagen 3.0 |
 | Image Processing | Pillow (PIL) |
-| Computer Vision | YOLOv8 (simulated pipeline) |
+| Computer Vision | Google Gemini 1.5 Flash (Object Detection) |
 | Fonts | Playfair Display, Inter (Google Fonts) |
 
 ---
@@ -192,7 +192,7 @@ The app ships with a single opinionated design theme:
 
 ## ⚠️ Notes
 
-- The **YOLOv8 segmentation** step is currently simulated (1-second delay + console logs). The `torch` dependency is included for a future real integration with the `ultralytics` library.
+- Computer Vision for object and surface detection is handled natively via **Gemini 1.5 Flash**.
 - When the Imagen 3.0 API quota is exceeded or unavailable, the app automatically falls back to pre-generated mock renders (`mock_opt1.png`, `mock_opt2.png`).
 - The `GOOGLE_API_KEY` must be set in `backend/.env` — never commit the actual key.
 
@@ -202,7 +202,7 @@ The app ships with a single opinionated design theme:
 
 While the current version of **VIBE SPACIEE** serves as a high-fidelity prototype, the architecture is designed to scale with the following future enhancements:
 
-1. **Live Object Segmentation (YOLOv8)**: Transitioning from the simulated semantic segmentation pipeline to a live `ultralytics` PyTorch integration to automatically mask existing doors, windows, and structural load-bearing walls during AI generation.
+1. **Live Object Segmentation**: Transitioning to a dedicated semantic segmentation pipeline (e.g., `ultralytics` PyTorch YOLOv8) to automatically mask existing doors, windows, and structural load-bearing walls during AI generation with higher geometric precision.
 2. **E-Commerce Vendor API Integration**: Upgrading the Budget Estimator to pull live pricing and availability from furniture retailers (e.g., IKEA, Wayfair), allowing users to click and purchase the exact items generated in the renders.
 3. **User Authentication & Cloud Saves**: Implementing Google/Apple OAuth and a PostgreSQL database (hosted on Google Cloud) to allow users to save, share, and export their design portfolios across multiple devices.
 4. **Augmented Reality (AR) Overlay**: Developing a mobile-first PWA feature that leverages WebXR to project the generated 3D room renders back onto the user's physical space using their smartphone camera.

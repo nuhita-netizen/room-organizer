@@ -98,11 +98,11 @@
 <!-- TopAppBar -->
 <header class="w-full pt-4 px-6 flex justify-between items-center max-w-7xl mx-auto">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-teal-600 dark:text-teal-400 cursor-pointer hover:opacity-80 transition-opacity">menu</span>
+<span class="material-symbols-outlined text-teal-600 dark:text-teal-400 cursor-pointer hover:opacity-80 transition-opacity" onclick="window.history.back()">arrow_back</span>
 <h1 class="text-teal-500 dark:text-teal-300 font-headline font-bold tracking-widest text-lg">VIBE SPACIEE</h1>
 </div>
 <div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:scale-95 duration-200 cursor-pointer">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:scale-95 duration-200 cursor-pointer" onclick="showComingSoon(event)">
 <img alt="User profile" data-alt="close-up portrait of a professional man with clean lighting and neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOuaMPFO7IE5j4fAvVLFdvySmyWIzXDUFQw1k5WP5cy_6OBlU59AncuZE-jjK4kNdkhc_eYUpAl_sq-xFxpN314SNH2vKy24eDxesIWsl9eRUtVdPn_jRtKT_legXBG9YiOggxsp88nqn3AHTnnOE2ugy0ftM5ZH98lDgXdIeX_V0MOjKr_G6-ryI6qZHfMCfowejRa-uA48JMJSyJyjXWj4ZM15vVDGJqONwbwuLWIjVWJsW2DiQqwalNoxLf2JjtzTZchs7IRj0"/>
 </div>
 </div>
@@ -199,11 +199,11 @@
 <div class="grid grid-cols-2 gap-4">
 <div class="space-y-2">
 <label class="text-xs font-bold uppercase tracking-widest text-outline ml-4">Minimum (₹)</label>
-<input class="w-full bg-surface-container-lowest border-none rounded-full px-6 py-4 text-on-surface font-headline font-bold focus:ring-2 focus:ring-primary/40" type="text" value="5,00,000"/>
+<input id="min-budget" class="w-full bg-surface-container-lowest border-none rounded-full px-6 py-4 text-on-surface font-headline font-bold focus:ring-2 focus:ring-primary/40" type="text" value="5,00,000"/>
 </div>
 <div class="space-y-2">
 <label class="text-xs font-bold uppercase tracking-widest text-outline ml-4">Maximum (₹)</label>
-<input class="w-full bg-surface-container-lowest border-none rounded-full px-6 py-4 text-on-surface font-headline font-bold focus:ring-2 focus:ring-primary/40" type="text" value="12,00,000"/>
+<input id="max-budget" class="w-full bg-surface-container-lowest border-none rounded-full px-6 py-4 text-on-surface font-headline font-bold focus:ring-2 focus:ring-primary/40" type="text" value="12,00,000"/>
 </div>
 </div>
 </div>
@@ -223,22 +223,22 @@
 <div class="fixed bottom-0 w-full z-50 flex justify-center pb-8">
 <nav class="bg-teal-950/70 backdrop-blur-xl fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full px-6 py-3 flex justify-between items-center shadow-2xl shadow-teal-950/40">
 <!-- Nav Item: Design -->
-<a class="flex flex-col items-center justify-center text-teal-100/50 hover:text-teal-200 transition-colors active:scale-90 duration-300" href="#">
+<a class="flex flex-col items-center justify-center text-teal-100/50 hover:text-teal-200 transition-colors active:scale-90 duration-300" href="#" onclick="window.location.href='room_upload.html'; event.preventDefault();">
 <span class="material-symbols-outlined mb-1">architecture</span>
 <span class="font-manrope text-[10px] font-medium tracking-wide">Design</span>
 </a>
 <!-- Nav Item: Preferences (Active) -->
-<a class="flex flex-col items-center justify-center bg-teal-500/20 text-teal-300 rounded-full px-4 py-1 active:scale-90 duration-300" href="#">
+<a class="flex flex-col items-center justify-center bg-teal-500/20 text-teal-300 rounded-full px-4 py-1 active:scale-90 duration-300" href="#" onclick="event.preventDefault()">
 <span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">tune</span>
 <span class="font-manrope text-[10px] font-medium tracking-wide">Preferences</span>
 </a>
 <!-- Nav Item: Budget -->
-<a class="flex flex-col items-center justify-center text-teal-100/50 hover:text-teal-200 transition-colors active:scale-90 duration-300" href="#">
+<a class="flex flex-col items-center justify-center text-teal-100/50 hover:text-teal-200 transition-colors active:scale-90 duration-300" href="#" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined mb-1">payments</span>
 <span class="font-manrope text-[10px] font-medium tracking-wide">Budget</span>
 </a>
 <!-- Nav Item: Profile -->
-<a class="flex flex-col items-center justify-center text-teal-100/50 hover:text-teal-200 transition-colors active:scale-90 duration-300" href="#">
+<a class="flex flex-col items-center justify-center text-teal-100/50 hover:text-teal-200 transition-colors active:scale-90 duration-300" href="#" onclick="showComingSoon(event)">
 <span class="material-symbols-outlined mb-1">person</span>
 <span class="font-manrope text-[10px] font-medium tracking-wide">Profile</span>
 </a>
@@ -246,6 +246,20 @@
 </div>
 
 <script>
+function showComingSoon(e) {
+    if(e) e.preventDefault();
+    let toast = document.getElementById('coming-soon-toast');
+    if(!toast) {
+        toast = document.createElement('div');
+        toast.id = 'coming-soon-toast';
+        toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-[#133a3d] text-[#c3eaed] px-6 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 z-[100] font-bold flex items-center gap-2 border border-[#3e494a]';
+        toast.innerHTML = `<span class="material-symbols-outlined text-[#82d3de]">build</span> <span>Coming Soon!</span>`;
+        document.body.appendChild(toast);
+    }
+    toast.classList.remove('opacity-0');
+    setTimeout(() => toast.classList.add('opacity-0'), 3000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('section .grid > div');
     let selectedTheme = 'Minimalist';
@@ -279,6 +293,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const textArea = document.querySelector('textarea');
             const userSuggestion = textArea ? textArea.value : "";
+            const maxBudgetEl = document.getElementById('max-budget');
+            const budgetMax = maxBudgetEl ? maxBudgetEl.value : "12,00,000";
 
             genBtn.innerText = "GENERATING...";
             genBtn.disabled = true;
@@ -298,19 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 const data = await res.json();
                 if(data.success && data.generation_id) {
-                    window.location.href = 'results_dashboard.html?job_id=' + data.generation_id;
+                    window.location.href = 'results_dashboard.html?job_id=' + data.generation_id + '&style=' + encodeURIComponent(selectedTheme) + '&budget=' + encodeURIComponent(budgetMax);
                 } else {
-                    alert('Generation failed');
-                    genBtn.innerText = "GENERATE CONCEPTS";
-                    genBtn.disabled = false;
-                    genBtn.style.opacity = '1';
+                    // Fallback to mock behavior on specific app error
+                    window.location.href = 'results_dashboard.html?style=' + encodeURIComponent(selectedTheme) + '&budget=' + encodeURIComponent(budgetMax);
                 }
             } catch(e) {
                 console.error(e);
-                alert('Error generating');
-                genBtn.innerText = "GENERATE CONCEPTS";
-                genBtn.disabled = false;
-                genBtn.style.opacity = '1';
+                // Fallback to mock behavior when backend is down
+                window.location.href = 'results_dashboard.html?style=' + encodeURIComponent(selectedTheme) + '&budget=' + encodeURIComponent(budgetMax);
             }
         });
     }

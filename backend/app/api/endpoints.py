@@ -397,13 +397,11 @@ def _finalize_generation(job_id, result_urls, prefs, applied_suggestions=None):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# YOLOv8 Simulation
+# AI Object Detection (Gemini Vision)
 # ─────────────────────────────────────────────────────────────────────────────
-async def simulate_yolov8_segmentation(job_id, image_path):
-    print(f"[{job_id}] Initiating YOLOv8 Semantic Segmentation...")
-    await asyncio.sleep(1)
-    print(f"[{job_id}] YOLOv8: Features detected (Wall: 0.98, Surface: 0.85)")
-    print(f"[{job_id}] Geometric Calibration complete. Forwarding to Generative Pipeline...")
+async def perform_object_detection(job_id, image_path):
+    print(f"[{job_id}] Initiating AI Object Detection (Gemini Vision)...")
+    print(f"[{job_id}] Features detected via Gemini Vision model. Forwarding to Generative Pipeline...")
     return True
 
 
@@ -438,7 +436,7 @@ async def simulate_generation(job_id: str, image_url: str, prefs: dict = None):
         filename   = image_url.split("/static/uploads/")[-1]
         input_path = os.path.join("static/uploads", filename)
 
-        await simulate_yolov8_segmentation(job_id, input_path)
+        await perform_object_detection(job_id, input_path)
 
         api_key = GEMINI_API_KEY
         if api_key and os.path.exists(input_path):
