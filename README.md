@@ -6,7 +6,7 @@
 
 **Local Access:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/) *(Note: You must start the local server first)*
 
-![VIBE SPACIEE](backend/static/generic_room.png)
+
 
 ---
 
