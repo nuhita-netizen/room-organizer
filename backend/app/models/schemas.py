@@ -44,3 +44,30 @@ class GenerationStatusResponse(BaseModel):
     success: bool
     status: str
     data: Optional[GenerationResultData] = None
+
+# ── Redesign API (New Contract) ────────────────────────────────────────────────
+
+class PreferencesModel(BaseModel):
+    style: str # modern | boho | minimalist | scandinavian | industrial | luxury
+    budget: int # e.g. 30000
+    source_preference: str # 'local', 'ikea', 'hybrid'
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    colors: List[str] # 1-4 hex codes or named palette
+
+class RedesignBudgetItem(BaseModel):
+    item_name: str
+    price: float
+    vendor: str
+    distance_km: Optional[float] = None
+    url: Optional[str] = None
+
+class RedesignResponse(BaseModel):
+    result_image_url: str
+    prompt_used: str
+    generation_id: str
+    budget_breakdown: Optional[List[RedesignBudgetItem]] = None
+    detected_objects: Optional[List[str]] = None
+
+class RegenerateRequest(BaseModel):
+    preferences: PreferencesModel

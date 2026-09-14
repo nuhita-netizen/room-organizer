@@ -1,10 +1,11 @@
 import asyncio
+from typing import List, Dict, Any, Optional
 import uuid
 import os
 import json as _json
 from PIL import Image, ImageEnhance, ImageOps
 from io import BytesIO
-from fastapi import APIRouter, UploadFile, File, BackgroundTasks, HTTPException, status
+from fastapi import APIRouter, UploadFile, File, BackgroundTasks, HTTPException, status, Form
 
 # Load .env file if python-dotenv is available
 try:
@@ -23,7 +24,13 @@ from app.models.schemas import (
     GenerateResponse,
     GenerationStatusResponse,
     GenerationResultData,
+    PreferencesModel,
+    RedesignResponse,
+    RegenerateRequest,
+    RedesignBudgetItem,
 )
+
+from app.db.catalog import fetch_budget_breakdown
 
 router = APIRouter(prefix="/api/v1")
 
@@ -409,7 +416,7 @@ async def perform_object_detection(job_id, image_path):
 # Background Generation Task
 # ─────────────────────────────────────────────────────────────────────────────
 async def simulate_generation(job_id: str, image_url: str, prefs: dict = None):
-    """Background task: run YOLO → Imagen with suggestion-enriched prompts."""
+    """Background task: run Gemini Vision → Imagen with suggestion-enriched prompts."""
     await asyncio.sleep(2)
 
     design_style = prefs.get("design_style", "Minimalist") if prefs else "Minimalist"
@@ -523,3 +530,126 @@ async def get_generation_status(id: str):
     if job:
         return job
     return GenerationStatusResponse(success=False, status="failed", data=None)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Redesign API endpoints (V2 Contract)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _build_redesign_prompt(prefs: PreferencesModel, detected_objects: List[str] = None) -> str:
+    style_clause = f"Design language descriptor: {prefs.style}."
+    
+    budget_clause = f"Sourcing tier: up to {prefs.budget} local currency."
+    source_clause = f"Sourcing preference: {prefs.source_preference} vendors/items."
+    
+    objects_clause = ""
+    if detected_objects:
+        objects_clause = f" Keep or reimagine the following existing functional elements: {', '.join(detected_objects)}."
+    
+    colors_str = ", ".join(prefs.colors) if prefs.colors else "neutral tones"
+    color_clause = f"Hard constraint: limit palette to: {colors_str}, neutral tones allowed."
+    
+    return f"A highly detailed photorealistic 4K interior design render. {style_clause} {budget_clause} {source_clause} {color_clause} {objects_clause}"
+
+async def _run_redesign_generation(job_id: str, image_path: str, prefs: PreferencesModel) -> RedesignResponse:
+    # 1. Gemini Vision to extract existing objects (Mocked for now or use real)
+    detected_objects = ["Sofa", "Table", "Lamp"] # Fallback mock
+    api_key = GEMINI_API_KEY
+    
+    if api_key and os.path.exists(image_path):
+        try:
+            import google.generativeai as genai
+            model_vis = genai.GenerativeModel("gemini-1.5-flash")
+            img = Image.open(image_path).convert("RGB")
+            buf = BytesIO()
+            img.save(buf, format="JPEG", quality=85)
+            
+            prompt_vis = "List the main furniture objects in this room as a comma-separated list."
+            res_vis = model_vis.generate_content([{"mime_type": "image/jpeg", "data": buf.getvalue()}, prompt_vis])
+            if res_vis.text:
+                detected_objects = [x.strip() for x in res_vis.text.split(",") if x.strip()]
+        except Exception as e:
+            print(f"[{job_id}] Vision error: {e}")
+
+    # 2. Build Prompt & Generate
+    prompt = _build_redesign_prompt(prefs, detected_objects)
+    
+    result_image_url = f"{BASE_URL}/static/results/mock_opt1.png"
+    
+    if api_key and os.path.exists(image_path):
+        try:
+            import google.generativeai as genai
+            genai.configure(api_key=api_key)
+            model = genai.ImageGenerationModel("imagen-3.0-generate-001")
+            
+            os.makedirs("static/results", exist_ok=True)
+            out_filename = f"redesign_{job_id}_{uuid.uuid4().hex[:4]}.png"
+            out_path = os.path.join("static/results", out_filename)
+            
+            print(f"[{job_id}] Generating redesign with prompt: {prompt}")
+            resp = model.generate_images(prompt=prompt, number_of_images=1, aspect_ratio="4:3")
+            if resp.images:
+                Image.open(BytesIO(resp.images[0].image.image_bytes)).save(out_path)
+                result_image_url = f"{BASE_URL}/static/results/{out_filename}"
+        except Exception as e:
+            print(f"[{job_id}] Imagen redesign generation error: {e}")
+            
+    # 3. Calculate Budget Breakdown
+    breakdown_dicts = fetch_budget_breakdown(
+        detected_objects=detected_objects,
+        budget_ceiling=prefs.budget,
+        source_pref=prefs.source_preference,
+        user_lat=prefs.latitude,
+        user_lon=prefs.longitude
+    )
+    
+    budget_breakdown = [RedesignBudgetItem(**b) for b in breakdown_dicts]
+            
+    return RedesignResponse(
+        result_image_url=result_image_url,
+        prompt_used=prompt,
+        generation_id=job_id,
+        budget_breakdown=budget_breakdown,
+        detected_objects=detected_objects
+    )
+
+@router.post("/redesign", response_model=RedesignResponse)
+async def redesign_room(
+    file: UploadFile = File(...),
+    preferences: str = Form(...)
+):
+    try:
+        prefs_dict = _json.loads(preferences)
+        prefs = PreferencesModel(**prefs_dict)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Invalid preferences JSON: {str(e)}")
+    
+    content = await file.read()
+    if len(content) > 10 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="File Too Large")
+        
+    os.makedirs("static/uploads", exist_ok=True)
+    job_id = f"gen_{uuid.uuid4().hex[:8]}"
+    filename = f"{job_id}_{file.filename}"
+    filepath = os.path.join("static/uploads", filename)
+    with open(filepath, "wb") as buffer:
+        buffer.write(content)
+        
+    MOCK_DB[job_id] = {"image_path": filepath}
+    
+    return await _run_redesign_generation(job_id, filepath, prefs)
+
+@router.post("/redesign/{generation_id}/regenerate", response_model=RedesignResponse)
+async def regenerate_room(
+    generation_id: str,
+    request: RegenerateRequest
+):
+    job = MOCK_DB.get(generation_id)
+    if not job or "image_path" not in job:
+        raise HTTPException(status_code=404, detail="Generation ID not found or image missing")
+        
+    filepath = job["image_path"]
+    if not os.path.exists(filepath):
+        raise HTTPException(status_code=404, detail="Original image not found")
+        
+    return await _run_redesign_generation(generation_id, filepath, request.preferences)
